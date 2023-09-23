@@ -24,10 +24,6 @@ window/size/viewport_height=1080
 
 project/assembly_name="Bartend-or-die"
 
-[physics]
-
-2d/default_linear_damp=0.1
-
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
