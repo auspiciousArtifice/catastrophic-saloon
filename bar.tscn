@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://gqxi2s4s7p60"]
+[gd_scene load_steps=8 format=3 uid="uid://gqxi2s4s7p60"]
 
 [ext_resource type="Script" path="res://scripts/shaker.gd" id="1_wbpji"]
 
@@ -9,10 +9,12 @@ size = Vector2(25, 35)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2yuum"]
 friction = 0.0
-bounce = 1.0
+bounce = 0.75
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w0u8x"]
 size = Vector2(294.25, 1843.13)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1ag4j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_je1qf"]
 size = Vector2(1916.5, 249)
@@ -23,6 +25,7 @@ size = Vector2(1916.5, 249)
 position = Vector2(960, 540)
 input_pickable = true
 gravity_scale = 2.0
+continuous_cd = 1
 linear_damp = 0.3
 script = ExtResource("1_wbpji")
 
@@ -49,6 +52,7 @@ scale = Vector2(1.02605, 1.89358)
 shape = SubResource("RectangleShape2D_w0u8x")
 
 [node name="FloorNode" type="StaticBody2D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_1ag4j")
 
 [node name="Floor" type="CollisionShape2D" parent="FloorNode"]
 position = Vector2(961.75, 1048)
