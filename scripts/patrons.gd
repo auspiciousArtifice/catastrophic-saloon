@@ -17,10 +17,11 @@ func _ready():
 func _process(delta):
 	pass
 
+
 func _on_timer_timeout():
 	var p = patron.instantiate()
 	var rand_x = randi_range(200, 2000)
-	p.global_position = Vector2(rand_x,1000)
+	p.global_position = Vector2(rand_x,850)
 	add_child(p)
 	p.id = id_gen
 	id_gen = id_gen + 1
@@ -29,6 +30,7 @@ func _on_timer_timeout():
 	$Timer.wait_time = randi_range(3,5)
 	if(patron_list.size() > 2):
 		$Timer.stop()
+
 
 func _remove_patron(n):
 	for p in patron_list:
