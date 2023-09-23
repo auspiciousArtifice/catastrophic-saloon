@@ -4,7 +4,8 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xd018"]
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_b8nii"]
+[sub_resource type="CanvasTexture" id="CanvasTexture_kqvma"]
+specular_color = Color(1, 0, 0, 1)
 
 [node name="patron" type="Node2D"]
 script = ExtResource("1_n472o")
@@ -18,6 +19,6 @@ debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="Sprite2D" type="Sprite2D" parent="Area2D"]
 scale = Vector2(300, 600)
-texture = SubResource("CanvasTexture_b8nii")
+texture = SubResource("CanvasTexture_kqvma")
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
