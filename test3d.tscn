@@ -16,7 +16,7 @@ tonemap_mode = 2
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_l02nu"]
 
-[node name="Node3D" type="Node3D"]
+[node name="3D Test Scene" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_0fvlq")

@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://gqxi2s4s7p60"]
+
+[ext_resource type="Script" path="res://scripts/RigidBody2D.gd" id="1_prdaa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_abu3o"]
+size = Vector2(25, 35)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_uia2r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w0u8x"]
+size = Vector2(294.25, 998.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_je1qf"]
+size = Vector2(1916.5, 249)
+
+[node name="Bar" type="Node2D"]
+
+[node name="Shaker" type="RigidBody2D" parent="."]
+position = Vector2(960, 540)
+input_pickable = true
+gravity_scale = 2.0
+linear_damp = 0.3
+script = ExtResource("1_prdaa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shaker"]
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_abu3o")
+
+[node name="Sprite2D" type="Sprite2D" parent="Shaker"]
+z_index = -1
+scale = Vector2(100, 150)
+texture = SubResource("PlaceholderTexture2D_uia2r")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="WallRight" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(2064, 488)
+shape = SubResource("RectangleShape2D_w0u8x")
+
+[node name="Floor" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(961.75, 1040)
+shape = SubResource("RectangleShape2D_je1qf")
+
+[node name="WallLeft" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-144, 496)
+shape = SubResource("RectangleShape2D_w0u8x")
+
+[node name="Panel" type="Panel" parent="StaticBody2D"]
+offset_left = -24.0
+offset_top = 912.0
+offset_right = 1936.0
+offset_bottom = 1248.0
+
+[connection signal="input_event" from="Shaker" to="Shaker" method="_on_input_event"]
