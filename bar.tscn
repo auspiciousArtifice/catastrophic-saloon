@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://gqxi2s4s7p60"]
+[gd_scene load_steps=10 format=3 uid="uid://gqxi2s4s7p60"]
 
+[ext_resource type="Script" path="res://scripts/bar.gd" id="1_gdwpw"]
 [ext_resource type="Script" path="res://scripts/shaker.gd" id="1_wbpji"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_abu3o"]
@@ -19,13 +20,28 @@ size = Vector2(294.25, 1843.13)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_je1qf"]
 size = Vector2(1916.5, 249)
 
+[sub_resource type="GDScript" id="GDScript_3i4hl"]
+script/source = "extends Label
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	text = \"Score: %d\" % Game.player_score
+"
+
 [node name="Bar" type="Node2D"]
+script = ExtResource("1_gdwpw")
 
 [node name="Shaker" type="RigidBody2D" parent="."]
 position = Vector2(960, 540)
 input_pickable = true
 gravity_scale = 2.0
-continuous_cd = 1
+continuous_cd = 2
 linear_damp = 0.3
 script = ExtResource("1_wbpji")
 
@@ -63,5 +79,16 @@ offset_left = -24.0
 offset_top = 912.0
 offset_right = 1936.0
 offset_bottom = 1248.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Score" type="Label" parent="CanvasLayer"]
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 384.0
+offset_bottom = 115.0
+theme_override_font_sizes/font_size = 64
+text = "Score"
+script = SubResource("GDScript_3i4hl")
 
 [connection signal="input_event" from="Shaker" to="Shaker" method="_on_input_event"]
