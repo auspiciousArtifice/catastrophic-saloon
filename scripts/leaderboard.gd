@@ -40,7 +40,7 @@ func _authentication_request():
 	var file = FileAccess.open("user://LootLocker.data", FileAccess.READ)
 	var player_identifier = file.get_as_text()
 	file.close()
-	if(player_identifier.length() > 1):
+	if(player_identifier.length() > 1): 
 		player_session_exists = true
 		
 	## Convert data to json string:
@@ -83,6 +83,7 @@ func _on_authentication_request_completed(result, response_code, headers, body):
 	auth_http.queue_free()
 	# Get leaderboards
 	_get_leaderboards()
+	# 
 
 
 func _get_leaderboards():
