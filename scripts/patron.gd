@@ -2,6 +2,7 @@ extends Node2D
 
 signal despawn(n)
 var id
+var drink
 
 var p_img1 = preload("res://assets/image.png")
 var p_img2 = preload("res://assets/crying_patron.png")
@@ -23,4 +24,5 @@ func _process(delta):
 
 func _on_area_2d_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		print(drink)
 		despawn.emit(id)

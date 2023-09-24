@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://s0iixambxxyb"]
+
+[ext_resource type="Script" path="res://scripts/patron.gd" id="1_n472o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xd018"]
+
+[node name="patron" type="Node2D"]
+script = ExtResource("1_n472o")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(15, 20)
+shape = SubResource("RectangleShape2D_xd018")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+scale = Vector2(2.25, 2.25)
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

@@ -6,6 +6,11 @@ var patron_list
 var id_gen
 var x_locations
 
+var json = JSON.new()
+var json_string = FileAccess.open("res://data/drinks.json", FileAccess.READ).get_as_text()
+var error = json.parse(json_string)
+var drink_data = json.data["drinks"]
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
@@ -29,6 +34,7 @@ func _on_timer_timeout():
 	add_child(p)
 	p.id = id_gen
 	id_gen = id_gen + 1
+	p.drink = drink_data[randi() % drink_data.size()]
 	p.despawn.connect(_remove_patron)
 	patron_list.push_back(p)
 	$Timer.wait_time = randi_range(3,5)
