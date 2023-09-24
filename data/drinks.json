@@ -1,0 +1,74 @@
+{
+    "drinks":[
+        {
+            "drink_name": "Whisker Sour",
+            "ingredients": {
+                "base": "Whiskey",
+                "addons": ["Lemons", "Sugar"]
+            }
+        },
+        {
+            "drink_name": "Meowgarita",
+            "ingredients": {
+                "base": "Tequlia",
+                "addons": ["Lemons", "Salt"]
+            }
+        },
+        {
+            "drink_name": "Gin and Pawnic",
+            "ingredients": {
+                "base": "Gin",
+                "addons": ["Tonic"]
+            }
+        },
+        {
+            "drink_name": "Meowtini",
+            "ingredients": {
+                "base": "Gin",
+                "addons": ["Lemons", "Olive"]
+            }
+        },
+        {
+            "drink_name": "Meowmosa",
+            "ingredients": {
+                "base": "Champagne",
+                "addons": ["Oranges"]
+            }
+        },
+        {
+            "drink_name": "Ssscotch",
+            "ingredients": {
+                "base": "Scotch",
+                "addons": []   
+            }
+        },
+        {
+            "drink_name": "Pinya~ Colada",
+            "ingredients": {
+                "base": "Rum",
+                "addons": ["Coconut Milk", "Pineapple Juice"]
+            }
+        },
+        {
+            "drink_name": "Pawjito",
+            "ingredients": {
+                "base": "Rum",
+                "addons": ["Mint", "Limes"]
+            }
+        },
+        {
+            "drink_name": "Catbernet Wine",
+            "ingredients": {
+                "base": "Wine",
+                "addons": []
+            }
+        },
+        {
+            "drink_name": "Cat's Cradle",
+            "ingredients": {
+                "base": "Whiskey",
+                "addons": ["Mint", "Oranges"]
+            }
+        }
+    ]
+}
