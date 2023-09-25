@@ -6,9 +6,8 @@ signal shaker_landed
 signal perfect_landing
 signal shaker_spin
 
-var launched: bool
-var airborne: bool
-var shootable: bool
+var launched: bool = false
+var airborne: bool = false
 var rotated_degrees: float = 0.0
 var prev_degrees: float
 var launch_timer: Timer = Timer.new()
@@ -30,9 +29,6 @@ func check_landing() -> void:
 		print("perfect landing!")
 
 func _ready():
-	launched = false
-	airborne = false
-	shootable = false
 	prev_degrees = rotation_degrees
 	launch_timer.wait_time = 0.05
 	launch_timer.one_shot = true
@@ -41,6 +37,12 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if Input.is_action_just_pressed("ui_accept"):
+		launched = true
+		apply_central_impulse(Vector2(0, -1800))
+		launch_timer.start()
+		print("launched")
+	
 	if launched and airborne:
 		check_rotation()
 	
@@ -50,7 +52,6 @@ func _process(delta):
 	if launched and airborne and abs(linear_velocity.length()) <= 0.01:
 		launched = false
 		airborne = false
-		shootable = false
 		check_landing()
 		shaker_landed.emit()
 		print("landed")
@@ -67,8 +68,7 @@ func check_rotation() -> void:
 
 func _on_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		if not shootable:
-			return
+#		print("clicked in object")
 		var mouse_pos = get_global_mouse_position()
 		var force_offset = -(get_global_position() - mouse_pos)
 		var force_bullet_x = get_global_position().x - mouse_pos.x
@@ -76,15 +76,4 @@ func _on_input_event(viewport, event, shape_idx):
 		var force_bullet = Vector2(force_bullet_x * abs(force_bullet_x) / 3, force_bullet_y)
 		apply_impulse(force_bullet, force_offset)
 		shaker_hit.emit()
-
-
-func _on_bar_launch():
-	launched = true
-	shootable = true
-	apply_central_impulse(Vector2(0, -1800))
-	launch_timer.start()
-	print("launched")
-
-
-func _on_out_of_ammo():
-	shootable = false
+#		print("Bullet Force Vector: %s" % force_bullet)
