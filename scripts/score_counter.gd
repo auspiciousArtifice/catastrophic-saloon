@@ -11,13 +11,15 @@ signal player_score_updated
 @export var patron_served_score: int = 300
 
 
-var player_score: int = 0
-var accum_score: int = 0
+var player_score: int
+var accum_score: int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	player_score = 0
+	accum_score = 0
+	player_score_updated.emit()
+	accum_updated.emit()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -54,3 +56,7 @@ func _on_shaker_perfect_landing():
 func _on_shaker_shaker_landed():
 	calc_player_score()
 	reset_accum_score()
+
+
+func _on_shaker_shaker_spin():
+	add_to_accum(spin_score)

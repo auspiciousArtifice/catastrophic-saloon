@@ -4,9 +4,12 @@ extends RigidBody2D
 signal shaker_hit
 signal shaker_landed
 signal perfect_landing
+signal shaker_spin
 
 var launched: bool = false
 var airborne: bool = false
+var rotated_degrees: float = 0.0
+var prev_degrees: float
 var launch_timer: Timer = Timer.new()
 
 @export var bottom_ray_cast: RayCast2D
@@ -26,6 +29,7 @@ func check_landing() -> void:
 		print("perfect landing!")
 
 func _ready():
+	prev_degrees = rotation_degrees
 	launch_timer.wait_time = 0.05
 	launch_timer.one_shot = true
 	launch_timer.connect("timeout", set_airborne)
@@ -39,6 +43,9 @@ func _process(delta):
 		launch_timer.start()
 		print("launched")
 	
+	if launched and airborne:
+		check_rotation()
+	
 	# After the shaker is launched and the timer for getting the shaker airborne
 	# has stopped, detect if the shaker has stopped moving, or in other words,
 	# when it has landed. This will signal that the shooting period has ended.
@@ -48,6 +55,16 @@ func _process(delta):
 		check_landing()
 		shaker_landed.emit()
 		print("landed")
+
+## Observes rotation of shaker and emits signal when shaker spins 360 degrees
+func check_rotation() -> void:
+	var curr_degrees = rotation_degrees
+	rotated_degrees += abs(abs(prev_degrees) - abs(curr_degrees))
+	if rotated_degrees >= 360:
+		print("spin!")
+		rotated_degrees -= 360
+		shaker_spin.emit()
+	prev_degrees = curr_degrees
 
 func _on_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:

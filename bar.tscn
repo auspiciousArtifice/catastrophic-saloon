@@ -192,5 +192,6 @@ script = ExtResource("7_d246b")
 [connection signal="perfect_landing" from="Shaker" to="ScoreCounter" method="_on_shaker_perfect_landing"]
 [connection signal="shaker_hit" from="Shaker" to="ScoreCounter" method="_on_shaker_hit"]
 [connection signal="shaker_landed" from="Shaker" to="ScoreCounter" method="_on_shaker_shaker_landed"]
+[connection signal="shaker_spin" from="Shaker" to="ScoreCounter" method="_on_shaker_shaker_spin"]
 [connection signal="accum_updated" from="ScoreCounter" to="CanvasLayer/AccumScore" method="_on_score_counter_accum_updated"]
 [connection signal="player_score_updated" from="ScoreCounter" to="CanvasLayer/Score" method="_on_score_counter_player_score_updated"]
