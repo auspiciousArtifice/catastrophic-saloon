@@ -1,8 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://tgc0uthue6dj"]
+[gd_scene load_steps=15 format=3 uid="uid://tgc0uthue6dj"]
 
 [ext_resource type="Script" path="res://scripts/bar.gd" id="1_gdwpw"]
 [ext_resource type="Script" path="res://scripts/shaker.gd" id="1_wbpji"]
 [ext_resource type="Texture2D" uid="uid://ba02ddjsp1cka" path="res://assets/full_shaker.png" id="3_y2s3a"]
+[ext_resource type="Texture2D" uid="uid://dg64m62t8n1c6" path="res://assets/Western_HUD/crosshair.png" id="5_ko2w4"]
+[ext_resource type="Script" path="res://reticle.gd" id="6_gyqnu"]
 [ext_resource type="Script" path="res://scripts/score_counter.gd" id="7_d246b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_abu3o"]
@@ -179,14 +181,23 @@ score_counter = NodePath("../../ScoreCounter")
 [node name="ScoreCounter" type="Node" parent="."]
 script = ExtResource("7_d246b")
 
+[node name="ReticleSprite" type="Sprite2D" parent="."]
+position = Vector2(32, -32)
+scale = Vector2(2.9, 2.9)
+texture = ExtResource("5_ko2w4")
+script = ExtResource("6_gyqnu")
+
 [connection signal="ammo_changed" from="." to="CanvasLayer/BulletCounter" method="_on_bar_ammo_changed"]
 [connection signal="launch" from="." to="Shaker" method="_on_bar_launch"]
+[connection signal="launch" from="." to="ReticleSprite" method="_on_bar_launch"]
 [connection signal="out_of_ammo" from="." to="Shaker" method="_on_out_of_ammo"]
+[connection signal="out_of_ammo" from="." to="ReticleSprite" method="_on_out_of_ammo"]
 [connection signal="input_event" from="Shaker" to="Shaker" method="_on_input_event"]
 [connection signal="perfect_landing" from="Shaker" to="ScoreCounter" method="_on_shaker_perfect_landing"]
 [connection signal="shaker_hit" from="Shaker" to="ScoreCounter" method="_on_shaker_hit"]
 [connection signal="shaker_landed" from="Shaker" to="." method="_on_shaker_landed"]
 [connection signal="shaker_landed" from="Shaker" to="ScoreCounter" method="_on_shaker_shaker_landed"]
+[connection signal="shaker_landed" from="Shaker" to="ReticleSprite" method="_on_shaker_shaker_landed"]
 [connection signal="shaker_spin" from="Shaker" to="ScoreCounter" method="_on_shaker_shaker_spin"]
 [connection signal="accum_updated" from="ScoreCounter" to="CanvasLayer/AccumScore" method="_on_score_counter_accum_updated"]
 [connection signal="player_score_updated" from="ScoreCounter" to="CanvasLayer/Score" method="_on_score_counter_player_score_updated"]

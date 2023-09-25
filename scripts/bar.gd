@@ -27,10 +27,6 @@ func space_pressed() -> void:
 		print("served")
 		curr_state = BarState.PREPARE
 
-#func shoot() -> void:
-#	if shots_left > 0:
-#		shots_left -= 1
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	curr_state = BarState.PREPARE

@@ -50,6 +50,7 @@ func _process(delta):
 	if launched and airborne and abs(linear_velocity.length()) <= 0.01:
 		launched = false
 		airborne = false
+		shootable = false
 		check_landing()
 		shaker_landed.emit()
 		print("landed")
