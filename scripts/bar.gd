@@ -4,6 +4,8 @@ extends Node2D
 signal launch
 signal ammo_changed
 signal out_of_ammo
+signal serving
+signal not_serving
 
 enum BarState {PREPARE, SHOOT, SERVE}
 
@@ -23,9 +25,10 @@ func space_pressed() -> void:
 		curr_state = BarState.SHOOT
 		shots_left = 6
 		launch.emit()
-	elif curr_state == BarState.SERVE:
-		print("served")
-		curr_state = BarState.PREPARE
+#	elif curr_state == BarState.SERVE:
+#		print("served")
+#		curr_state = BarState.PREPARE
+#		get_tree().call_group("Patron", "_on_bar_not_serving")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -42,3 +45,10 @@ func _process(delta):
 
 func _on_shaker_landed():
 	curr_state = BarState.SERVE
+	get_tree().call_group("Patron", "_on_bar_serving")
+	print("serving")
+
+
+func _on_patrons_serving_done():
+	print("served")
+	curr_state = BarState.PREPARE

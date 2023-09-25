@@ -92,15 +92,15 @@ func _on_score_counter_accum_updated():
 [sub_resource type="GDScript" id="GDScript_n4lju"]
 script/source = "extends Label
 
-@export var patron_node: Patrons
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	text = \"Lives: %d\" % patron_node.life
+	text = \"Lives: %d\" % get_tree().get_node(\"Patrons\").life
 
 
-func _on_patrons_life_count_changed():
-	text = \"Lives: %d\" % patron_node.life
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+#	text = \"Score: %d\" % score_counter.calc_player_score()
+	pass
 "
 
 [node name="Bar" type="Node2D"]
@@ -193,7 +193,7 @@ horizontal_alignment = 1
 script = SubResource("GDScript_ymtyq")
 score_counter = NodePath("../../ScoreCounter")
 
-[node name="LifeCounter" type="Label" parent="CanvasLayer" node_paths=PackedStringArray("patron_node")]
+[node name="Label" type="Label" parent="CanvasLayer"]
 offset_left = 780.0
 offset_top = 24.0
 offset_right = 935.0
@@ -201,7 +201,6 @@ offset_bottom = 115.0
 theme_override_font_sizes/font_size = 64
 text = "Lives"
 script = SubResource("GDScript_n4lju")
-patron_node = NodePath("../../Patrons")
 
 [node name="ScoreCounter" type="Node" parent="."]
 script = ExtResource("7_d246b")
@@ -232,5 +231,4 @@ autostart = true
 [connection signal="shaker_spin" from="Shaker" to="ScoreCounter" method="_on_shaker_shaker_spin"]
 [connection signal="accum_updated" from="ScoreCounter" to="CanvasLayer/AccumScore" method="_on_score_counter_accum_updated"]
 [connection signal="player_score_updated" from="ScoreCounter" to="CanvasLayer/Score" method="_on_score_counter_player_score_updated"]
-[connection signal="life_count_changed" from="Patrons" to="CanvasLayer/LifeCounter" method="_on_patrons_life_count_changed"]
 [connection signal="serving_done" from="Patrons" to="." method="_on_patrons_serving_done"]

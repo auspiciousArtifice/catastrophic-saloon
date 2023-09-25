@@ -1,11 +1,19 @@
+class_name Patrons
 extends Node2D
 
+signal serving_done
+signal life_count_changed
 
 var patron = preload("res://patron.tscn")
 var patron_list
 var id_gen
 var x_locations
-var life
+var life: int:
+	get:
+		return life
+	set(val):
+		life = val
+		life_count_changed.emit()
 
 var json = JSON.new()
 var json_string = FileAccess.open("res://data/drinks.json", FileAccess.READ).get_as_text()
@@ -39,6 +47,7 @@ func _on_timer_timeout():
 	p.drink = drink_data[randi() % drink_data.size()]
 	p.despawn.connect(_remove_patron)
 	p.unsatisfied.connect(_decrement_life)
+	p.patron_served.connect(_exit_serving_state)
 	patron_list.push_back(p)
 	$Timer.wait_time = randi_range(3,5)
 	if patron_list.size() > 2:
@@ -55,6 +64,10 @@ func _remove_patron(n):
 		$Timer.start()
 
 func _decrement_life():
-	life = life - 1
+	life -= 1
 	if life < 1:
 		print("game over")
+
+func _exit_serving_state():
+	serving_done.emit()
+	get_tree().call_group("Patron", "_on_finished_serving")
