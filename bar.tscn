@@ -2,12 +2,11 @@
 
 [ext_resource type="Script" path="res://scripts/bar.gd" id="1_gdwpw"]
 [ext_resource type="Script" path="res://scripts/shaker.gd" id="1_wbpji"]
+[ext_resource type="Texture2D" uid="uid://ba02ddjsp1cka" path="res://assets/full_shaker.png" id="3_y2s3a"]
 [ext_resource type="Script" path="res://scripts/score_counter.gd" id="7_d246b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_abu3o"]
 size = Vector2(25, 35)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_uia2r"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2yuum"]
 friction = 0.0
@@ -105,8 +104,9 @@ shape = SubResource("RectangleShape2D_abu3o")
 
 [node name="ShakerSprite" type="Sprite2D" parent="Shaker"]
 z_index = -1
-scale = Vector2(100, 150)
-texture = SubResource("PlaceholderTexture2D_uia2r")
+position = Vector2(10.1858, 4)
+scale = Vector2(0.474536, 0.463047)
+texture = ExtResource("3_y2s3a")
 
 [node name="ShakerRayCast" type="RayCast2D" parent="Shaker"]
 target_position = Vector2(0, 108)
