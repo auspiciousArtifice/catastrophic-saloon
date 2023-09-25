@@ -2,20 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-<<<<<<< HEAD
-uid="uid://6wu2g358s7di"
-=======
-uid="uid://c1acq4v3hw3ct"
->>>>>>> parent of b09bf9f (Revert "merged changes (hopefully nothing broke)")
-path="res://.godot/imported/curious_patron.png-8a31438cdbf6c55c22bce7bd1bede956.ctex"
+uid="uid://cmillgb023xuu"
+path="res://.godot/imported/Blue Effect Bullet Impact Explosion 32x32.png-666a21613295c4d0198e367a80638c6b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/curious_patron.png"
-dest_files=["res://.godot/imported/curious_patron.png-8a31438cdbf6c55c22bce7bd1bede956.ctex"]
+source_file="res://assets/Free Effect Bullet Impact Explosion 32x32 V1/Blue Effect Bullet Impact Explosion 32x32.png"
+dest_files=["res://.godot/imported/Blue Effect Bullet Impact Explosion 32x32.png-666a21613295c4d0198e367a80638c6b.ctex"]
 
 [params]
 

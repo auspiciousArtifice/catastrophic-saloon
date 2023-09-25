@@ -2,20 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-<<<<<<< HEAD
-uid="uid://6wu2g358s7di"
-=======
-uid="uid://c1acq4v3hw3ct"
->>>>>>> parent of b09bf9f (Revert "merged changes (hopefully nothing broke)")
-path="res://.godot/imported/curious_patron.png-8a31438cdbf6c55c22bce7bd1bede956.ctex"
+uid="uid://dg64m62t8n1c6"
+path="res://.godot/imported/crosshair.png-68733fcb4533ca62b7aebf1e0d39d98f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/curious_patron.png"
-dest_files=["res://.godot/imported/curious_patron.png-8a31438cdbf6c55c22bce7bd1bede956.ctex"]
+source_file="res://assets/Western_HUD/crosshair.png"
+dest_files=["res://.godot/imported/crosshair.png-68733fcb4533ca62b7aebf1e0d39d98f.ctex"]
 
 [params]
 

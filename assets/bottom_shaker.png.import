@@ -2,7 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
+<<<<<<< HEAD
 uid="uid://h6eraamenwf1"
+=======
+uid="uid://dd7tmieyjdtkg"
+>>>>>>> parent of b09bf9f (Revert "merged changes (hopefully nothing broke)")
 path="res://.godot/imported/bottom_shaker.png-7bc359810e180801732b33a031eb023b.ctex"
 metadata={
 "vram_texture": false
