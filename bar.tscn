@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://gqxi2s4s7p60"]
+[gd_scene load_steps=17 format=3 uid="uid://tgc0uthue6dj"]
 
 [ext_resource type="Script" path="res://scripts/bar.gd" id="1_gdwpw"]
 [ext_resource type="Script" path="res://scripts/shaker.gd" id="1_wbpji"]
@@ -86,13 +86,14 @@ func _on_score_counter_accum_updated():
 [node name="Bar" type="Node2D"]
 script = ExtResource("1_gdwpw")
 
-[node name="Shaker" type="RigidBody2D" parent="."]
+[node name="Shaker" type="RigidBody2D" parent="." node_paths=PackedStringArray("bottom_ray_cast")]
 position = Vector2(960, 540)
 input_pickable = true
 gravity_scale = 2.0
 continuous_cd = 2
 linear_damp = 0.3
 script = ExtResource("1_wbpji")
+bottom_ray_cast = NodePath("ShakerRayCast")
 
 [node name="ShakerCollisionShape" type="CollisionShape2D" parent="Shaker"]
 scale = Vector2(5, 5)
@@ -188,5 +189,9 @@ script = ExtResource("6_x5oca")
 script = ExtResource("7_d246b")
 
 [connection signal="input_event" from="Shaker" to="Shaker" method="_on_input_event"]
+[connection signal="perfect_landing" from="Shaker" to="ScoreCounter" method="_on_shaker_perfect_landing"]
+[connection signal="shaker_hit" from="Shaker" to="ScoreCounter" method="_on_shaker_hit"]
+[connection signal="shaker_landed" from="Shaker" to="ScoreCounter" method="_on_shaker_shaker_landed"]
+[connection signal="shaker_spin" from="Shaker" to="ScoreCounter" method="_on_shaker_shaker_spin"]
 [connection signal="accum_updated" from="ScoreCounter" to="CanvasLayer/AccumScore" method="_on_score_counter_accum_updated"]
 [connection signal="player_score_updated" from="ScoreCounter" to="CanvasLayer/Score" method="_on_score_counter_player_score_updated"]
