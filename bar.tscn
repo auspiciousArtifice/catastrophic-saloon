@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/bar.gd" id="1_gdwpw"]
 [ext_resource type="Script" path="res://scripts/shaker.gd" id="1_wbpji"]
-[ext_resource type="Texture2D" uid="uid://ba02ddjsp1cka" path="res://assets/full_shaker.png" id="3_y2s3a"]
+[ext_resource type="Texture2D" uid="uid://wj6kp6tuf5o3" path="res://assets/full_shaker.png" id="3_y2s3a"]
 [ext_resource type="Texture2D" uid="uid://dg64m62t8n1c6" path="res://assets/Western_HUD/crosshair.png" id="5_ko2w4"]
 [ext_resource type="Script" path="res://reticle.gd" id="6_gyqnu"]
 [ext_resource type="Script" path="res://scripts/score_counter.gd" id="7_d246b"]
@@ -195,13 +195,9 @@ script = ExtResource("6_gyqnu")
 [connection signal="input_event" from="Shaker" to="Shaker" method="_on_input_event"]
 [connection signal="perfect_landing" from="Shaker" to="ScoreCounter" method="_on_shaker_perfect_landing"]
 [connection signal="shaker_hit" from="Shaker" to="ScoreCounter" method="_on_shaker_hit"]
-<<<<<<< HEAD
-[connection signal="shaker_landed" from="Shaker" to="ScoreCounter" method="_on_shaker_shaker_landed"]
-=======
 [connection signal="shaker_landed" from="Shaker" to="." method="_on_shaker_landed"]
 [connection signal="shaker_landed" from="Shaker" to="ScoreCounter" method="_on_shaker_shaker_landed"]
 [connection signal="shaker_landed" from="Shaker" to="ReticleSprite" method="_on_shaker_shaker_landed"]
->>>>>>> parent of b09bf9f (Revert "merged changes (hopefully nothing broke)")
 [connection signal="shaker_spin" from="Shaker" to="ScoreCounter" method="_on_shaker_shaker_spin"]
 [connection signal="accum_updated" from="ScoreCounter" to="CanvasLayer/AccumScore" method="_on_score_counter_accum_updated"]
 [connection signal="player_score_updated" from="ScoreCounter" to="CanvasLayer/Score" method="_on_score_counter_player_score_updated"]
