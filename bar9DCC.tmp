@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://tgc0uthue6dj"]
+[gd_scene load_steps=16 format=3 uid="uid://tgc0uthue6dj"]
 
 [ext_resource type="Script" path="res://scripts/bar.gd" id="1_gdwpw"]
 [ext_resource type="Script" path="res://scripts/shaker.gd" id="1_wbpji"]
@@ -30,20 +30,14 @@ script/source = "extends Label
 
 @export var score_counter: ScoreCounter
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	text = \"Score: %d\" % score_counter.player_score
+	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-#	text = \"Score: %d\" % score_counter.calc_player_score()
-	pass
-
-
-func _on_score_counter_player_score_updated():
-	text = \"Score: %d\" % score_counter.player_score
+	text = \"Score: %d\" % ScoreCounter.calc_player_score()
 "
 
 [sub_resource type="GDScript" id="GDScript_s38qh"]
@@ -60,52 +54,25 @@ func _process(delta):
 	text = \"Bullets: %s\" % \"||||||\"
 "
 
-[sub_resource type="GDScript" id="GDScript_ymtyq"]
-script/source = "extends Label
-
-@export var score_counter: ScoreCounter
-
-func update_label() -> void:
-	text = \"%d\" % score_counter.accum_score
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	update_label()
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-#	text = \"Score: %d\" % score_counter.calc_player_score()
-	pass
-
-
-func _on_score_counter_accum_updated():
-	update_label()
-"
-
 [node name="Bar" type="Node2D"]
 script = ExtResource("1_gdwpw")
 
-[node name="Shaker" type="RigidBody2D" parent="." node_paths=PackedStringArray("bottom_ray_cast")]
+[node name="Shaker" type="RigidBody2D" parent="."]
 position = Vector2(960, 540)
 input_pickable = true
 gravity_scale = 2.0
 continuous_cd = 2
 linear_damp = 0.3
 script = ExtResource("1_wbpji")
-bottom_ray_cast = NodePath("ShakerRayCast")
 
-[node name="ShakerCollisionShape" type="CollisionShape2D" parent="Shaker"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shaker"]
 scale = Vector2(5, 5)
 shape = SubResource("RectangleShape2D_abu3o")
 
-[node name="ShakerSprite" type="Sprite2D" parent="Shaker"]
+[node name="Sprite2D" type="Sprite2D" parent="Shaker"]
 z_index = -1
 scale = Vector2(100, 150)
 texture = SubResource("PlaceholderTexture2D_uia2r")
-
-[node name="ShakerRayCast" type="RayCast2D" parent="Shaker"]
-target_position = Vector2(0, 108)
 
 [node name="Walls" type="StaticBody2D" parent="."]
 physics_material_override = SubResource("PhysicsMaterial_2yuum")
@@ -135,7 +102,7 @@ offset_bottom = 1248.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Score" type="Label" parent="CanvasLayer" node_paths=PackedStringArray("score_counter")]
+[node name="Score" type="Label" parent="CanvasLayer"]
 offset_left = 24.0
 offset_top = 24.0
 offset_right = 384.0
@@ -143,34 +110,15 @@ offset_bottom = 115.0
 theme_override_font_sizes/font_size = 64
 text = "Score"
 script = SubResource("GDScript_3i4hl")
-score_counter = NodePath("../../ScoreCounter")
 
 [node name="BulletCounter" type="Label" parent="CanvasLayer"]
 offset_left = 1432.0
-offset_top = 24.0
+offset_top = 976.0
 offset_right = 1644.0
-offset_bottom = 115.0
+offset_bottom = 1067.0
 theme_override_font_sizes/font_size = 64
 text = "Bullets"
 script = SubResource("GDScript_s38qh")
-
-[node name="AccumScore" type="Label" parent="CanvasLayer" node_paths=PackedStringArray("score_counter")]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -74.0
-offset_top = 404.0
-offset_right = 74.0
-offset_bottom = 495.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 64
-text = "1000"
-horizontal_alignment = 1
-script = SubResource("GDScript_ymtyq")
-score_counter = NodePath("../../ScoreCounter")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("state")]
 script = ExtResource("3_4gp68")
@@ -189,8 +137,3 @@ script = ExtResource("6_x5oca")
 script = ExtResource("7_d246b")
 
 [connection signal="input_event" from="Shaker" to="Shaker" method="_on_input_event"]
-[connection signal="perfect_landing" from="Shaker" to="ScoreCounter" method="_on_shaker_perfect_landing"]
-[connection signal="shaker_hit" from="Shaker" to="ScoreCounter" method="_on_shaker_hit"]
-[connection signal="shaker_landed" from="Shaker" to="ScoreCounter" method="_on_shaker_shaker_landed"]
-[connection signal="accum_updated" from="ScoreCounter" to="CanvasLayer/AccumScore" method="_on_score_counter_accum_updated"]
-[connection signal="player_score_updated" from="ScoreCounter" to="CanvasLayer/Score" method="_on_score_counter_player_score_updated"]
