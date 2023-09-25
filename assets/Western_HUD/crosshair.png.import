@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxmb2geml8oxc"
-path="res://.godot/imported/full_shaker.png-43c484507ee39dcbe88d6f1f327f2277.ctex"
+uid="uid://dg64m62t8n1c6"
+path="res://.godot/imported/crosshair.png-68733fcb4533ca62b7aebf1e0d39d98f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/full_shaker.png"
-dest_files=["res://.godot/imported/full_shaker.png-43c484507ee39dcbe88d6f1f327f2277.ctex"]
+source_file="res://assets/Western_HUD/crosshair.png"
+dest_files=["res://.godot/imported/crosshair.png-68733fcb4533ca62b7aebf1e0d39d98f.ctex"]
 
 [params]
 

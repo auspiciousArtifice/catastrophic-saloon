@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxmb2geml8oxc"
-path="res://.godot/imported/full_shaker.png-43c484507ee39dcbe88d6f1f327f2277.ctex"
+uid="uid://dy5tidkcc61bs"
+path="res://.godot/imported/player_stat_bar.png-0040894874ef9576fbb50f274a7e8a85.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/full_shaker.png"
-dest_files=["res://.godot/imported/full_shaker.png-43c484507ee39dcbe88d6f1f327f2277.ctex"]
+source_file="res://assets/Western_HUD/player_stat_bar.png"
+dest_files=["res://.godot/imported/player_stat_bar.png-0040894874ef9576fbb50f274a7e8a85.ctex"]
 
 [params]
 

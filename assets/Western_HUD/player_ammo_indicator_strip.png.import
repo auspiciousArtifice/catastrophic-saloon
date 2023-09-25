@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxmb2geml8oxc"
-path="res://.godot/imported/full_shaker.png-43c484507ee39dcbe88d6f1f327f2277.ctex"
+uid="uid://by8jmmuhotveq"
+path="res://.godot/imported/player_ammo_indicator_strip.png-78a0fee29c36d43067ff4a2ce93e1056.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/full_shaker.png"
-dest_files=["res://.godot/imported/full_shaker.png-43c484507ee39dcbe88d6f1f327f2277.ctex"]
+source_file="res://assets/Western_HUD/player_ammo_indicator_strip.png"
+dest_files=["res://.godot/imported/player_ammo_indicator_strip.png-78a0fee29c36d43067ff4a2ce93e1056.ctex"]
 
 [params]
 

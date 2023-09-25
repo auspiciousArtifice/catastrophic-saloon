@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxmb2geml8oxc"
-path="res://.godot/imported/full_shaker.png-43c484507ee39dcbe88d6f1f327f2277.ctex"
+uid="uid://dqu7qf1l2vxko"
+path="res://.godot/imported/Red Effect Bullet Impact Explosion 32x32.png-954336899e04c34a327599f415ecf7ff.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/full_shaker.png"
-dest_files=["res://.godot/imported/full_shaker.png-43c484507ee39dcbe88d6f1f327f2277.ctex"]
+source_file="res://assets/Free Effect Bullet Impact Explosion 32x32 V1/Red Effect Bullet Impact Explosion 32x32.png"
+dest_files=["res://.godot/imported/Red Effect Bullet Impact Explosion 32x32.png-954336899e04c34a327599f415ecf7ff.ctex"]
 
 [params]
 
