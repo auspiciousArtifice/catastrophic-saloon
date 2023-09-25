@@ -56,5 +56,6 @@ func _remove_patron(n):
 
 func _decrement_life():
 	life = life - 1
+	$Label.text = "Lives Left: " + str(life)
 	if life < 1:
-		print("game over")
+		get_tree().paused = true

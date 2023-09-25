@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://sy6yeva25ise"]
+[gd_scene load_steps=3 format=3 uid="uid://sy6yeva25ise"]
 
 [ext_resource type="Script" path="res://scripts/patrons.gd" id="1_8r6mj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1e315"]
+font_size = 80
 
 [node name="patrons" type="Node2D"]
 script = ExtResource("1_8r6mj")
@@ -8,5 +11,14 @@ script = ExtResource("1_8r6mj")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
 autostart = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = 1401.0
+offset_top = 7.0
+offset_right = 1911.0
+offset_bottom = 120.0
+text = "Lives Left: 3"
+label_settings = SubResource("LabelSettings_1e315")
+horizontal_alignment = 1
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
