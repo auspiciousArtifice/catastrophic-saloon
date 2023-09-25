@@ -67,6 +67,7 @@ func _decrement_life():
 	life -= 1
 	if life < 1:
 		print("game over")
+		get_tree().paused = true
 
 func _exit_serving_state():
 	serving_done.emit()
