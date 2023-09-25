@@ -1,11 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://tgc0uthue6dj"]
+[gd_scene load_steps=13 format=3 uid="uid://tgc0uthue6dj"]
 
 [ext_resource type="Script" path="res://scripts/bar.gd" id="1_gdwpw"]
 [ext_resource type="Script" path="res://scripts/shaker.gd" id="1_wbpji"]
-[ext_resource type="Script" path="res://scripts/finite_state_machine/fsm.gd" id="3_4gp68"]
-[ext_resource type="Script" path="res://scripts/finite_state_machine/prepare_drink_state.gd" id="4_qfyxa"]
-[ext_resource type="Script" path="res://scripts/finite_state_machine/shooting_shaker_state.gd" id="5_vy8qt"]
-[ext_resource type="Script" path="res://scripts/finite_state_machine/serve_drink_state.gd" id="6_x5oca"]
 [ext_resource type="Script" path="res://scripts/score_counter.gd" id="7_d246b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_abu3o"]
@@ -49,15 +45,23 @@ func _on_score_counter_player_score_updated():
 [sub_resource type="GDScript" id="GDScript_s38qh"]
 script/source = "extends Label
 
+var count: String
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	count = \"\"
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	text = \"Bullets: %s\" % \"||||||\"
+	text = \"Bullets: %s\" % count
+
+
+func _on_bar_ammo_changed(ammo_count: int):
+	var temp: String = \"\"
+	for i in range(ammo_count):
+		temp += \"|\"
+	count = temp
 "
 
 [sub_resource type="GDScript" id="GDScript_ymtyq"]
@@ -172,25 +176,16 @@ horizontal_alignment = 1
 script = SubResource("GDScript_ymtyq")
 score_counter = NodePath("../../ScoreCounter")
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("state")]
-script = ExtResource("3_4gp68")
-state = NodePath("PrepareDrinkState")
-
-[node name="PrepareDrinkState" type="Node" parent="StateMachine"]
-script = ExtResource("4_qfyxa")
-
-[node name="ShootingShakerState" type="Node" parent="StateMachine"]
-script = ExtResource("5_vy8qt")
-
-[node name="ServeDrinkState" type="Node" parent="StateMachine"]
-script = ExtResource("6_x5oca")
-
 [node name="ScoreCounter" type="Node" parent="."]
 script = ExtResource("7_d246b")
 
+[connection signal="ammo_changed" from="." to="CanvasLayer/BulletCounter" method="_on_bar_ammo_changed"]
+[connection signal="launch" from="." to="Shaker" method="_on_bar_launch"]
+[connection signal="out_of_ammo" from="." to="Shaker" method="_on_out_of_ammo"]
 [connection signal="input_event" from="Shaker" to="Shaker" method="_on_input_event"]
 [connection signal="perfect_landing" from="Shaker" to="ScoreCounter" method="_on_shaker_perfect_landing"]
 [connection signal="shaker_hit" from="Shaker" to="ScoreCounter" method="_on_shaker_hit"]
+[connection signal="shaker_landed" from="Shaker" to="." method="_on_shaker_landed"]
 [connection signal="shaker_landed" from="Shaker" to="ScoreCounter" method="_on_shaker_shaker_landed"]
 [connection signal="shaker_spin" from="Shaker" to="ScoreCounter" method="_on_shaker_shaker_spin"]
 [connection signal="accum_updated" from="ScoreCounter" to="CanvasLayer/AccumScore" method="_on_score_counter_accum_updated"]
