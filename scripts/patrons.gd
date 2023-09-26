@@ -3,6 +3,7 @@ extends Node2D
 
 signal serving_done
 signal life_count_changed
+signal game_over
 
 var patron = preload("res://patron.tscn")
 var patron_list
@@ -67,7 +68,7 @@ func _decrement_life():
 	life -= 1
 	if life < 1:
 		print("game over")
-		get_tree().paused = true
+		game_over.emit()
 
 func _exit_serving_state():
 	serving_done.emit()

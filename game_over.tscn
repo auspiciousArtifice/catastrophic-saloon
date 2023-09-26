@@ -1,0 +1,64 @@
+[gd_scene load_steps=3 format=3 uid="uid://dymuguk7xaqwc"]
+
+[ext_resource type="Script" path="res://scripts/game_over.gd" id="1_q4bqi"]
+
+[sub_resource type="GDScript" id="GDScript_wcg1i"]
+script/source = "extends Label
+
+@export var game_over_node: GameOver
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	text = \"Final Score: %d\" % game_over_node.final_score
+"
+
+[node name="GameOver" type="Node2D"]
+script = ExtResource("1_q4bqi")
+
+[node name="GameOverText" type="Label" parent="."]
+offset_right = 1920.0
+offset_bottom = 232.0
+theme_override_colors/font_color = Color(0.839216, 0.321569, 0.192157, 1)
+theme_override_colors/font_shadow_color = Color(0.956863, 0.384314, 0.494118, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 128
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FinalScoreLabel" type="Label" parent="." node_paths=PackedStringArray("game_over_node")]
+offset_top = 232.0
+offset_right = 1920.0
+offset_bottom = 464.0
+theme_override_colors/font_color = Color(0.839216, 0.321569, 0.192157, 1)
+theme_override_colors/font_shadow_color = Color(0.956863, 0.384314, 0.494118, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 128
+text = "Final Score:"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = SubResource("GDScript_wcg1i")
+game_over_node = NodePath("..")
+
+[node name="PlayAgainButton" type="Button" parent="."]
+offset_left = 128.0
+offset_top = 600.0
+offset_right = 896.0
+offset_bottom = 832.0
+text = "Play Again"
+
+[node name="QuitButton" type="Button" parent="."]
+offset_left = 1024.0
+offset_top = 600.0
+offset_right = 1793.0
+offset_bottom = 832.0
+text = "Quit"
+
+[connection signal="pressed" from="PlayAgainButton" to="." method="_on_play_again_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

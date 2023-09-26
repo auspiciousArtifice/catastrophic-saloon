@@ -9,6 +9,8 @@ signal not_serving
 
 enum BarState {PREPARE, SHOOT, SERVE}
 
+@export var score_counter: ScoreCounter
+
 var curr_state: BarState
 var shots_left: int:
 	get:
@@ -25,10 +27,6 @@ func space_pressed() -> void:
 		curr_state = BarState.SHOOT
 		shots_left = 6
 		launch.emit()
-#	elif curr_state == BarState.SERVE:
-#		print("served")
-#		curr_state = BarState.PREPARE
-#		get_tree().call_group("Patron", "_on_bar_not_serving")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -52,3 +50,12 @@ func _on_shaker_landed():
 func _on_patrons_serving_done():
 	print("served")
 	curr_state = BarState.PREPARE
+
+
+
+func _on_game_over():
+	var game_over_scene = load("res://game_over.tscn").instantiate()
+	game_over_scene.final_score = score_counter.player_score
+	print(game_over_scene.final_score)
+	get_tree().root.add_child(game_over_scene)
+	get_tree().get_root().remove_child(self)

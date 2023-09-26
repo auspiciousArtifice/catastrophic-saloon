@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/shaker.gd" id="1_wbpji"]
 [ext_resource type="Texture2D" uid="uid://ba02ddjsp1cka" path="res://assets/full_shaker.png" id="3_y2s3a"]
 [ext_resource type="Texture2D" uid="uid://dg64m62t8n1c6" path="res://assets/Western_HUD/crosshair.png" id="5_ko2w4"]
-[ext_resource type="Script" path="res://reticle.gd" id="6_gyqnu"]
+[ext_resource type="Script" path="res://scripts/reticle.gd" id="6_7k1k8"]
 [ext_resource type="Script" path="res://scripts/score_counter.gd" id="7_d246b"]
 [ext_resource type="PackedScene" uid="uid://sy6yeva25ise" path="res://patrons.tscn" id="7_jvwad"]
 
@@ -103,8 +103,9 @@ func _on_patrons_life_count_changed():
 	text = \"Lives: %d\" % patron_node.life
 "
 
-[node name="Bar" type="Node2D"]
+[node name="Bar" type="Node2D" node_paths=PackedStringArray("score_counter")]
 script = ExtResource("1_gdwpw")
+score_counter = NodePath("ScoreCounter")
 
 [node name="Shaker" type="RigidBody2D" parent="." node_paths=PackedStringArray("bottom_ray_cast")]
 position = Vector2(960, 540)
@@ -210,7 +211,7 @@ script = ExtResource("7_d246b")
 position = Vector2(32, -32)
 scale = Vector2(2.9, 2.9)
 texture = ExtResource("5_ko2w4")
-script = ExtResource("6_gyqnu")
+script = ExtResource("6_7k1k8")
 
 [node name="Patrons" parent="." instance=ExtResource("7_jvwad")]
 
@@ -232,5 +233,6 @@ autostart = true
 [connection signal="shaker_spin" from="Shaker" to="ScoreCounter" method="_on_shaker_shaker_spin"]
 [connection signal="accum_updated" from="ScoreCounter" to="CanvasLayer/AccumScore" method="_on_score_counter_accum_updated"]
 [connection signal="player_score_updated" from="ScoreCounter" to="CanvasLayer/Score" method="_on_score_counter_player_score_updated"]
+[connection signal="game_over" from="Patrons" to="." method="_on_game_over"]
 [connection signal="life_count_changed" from="Patrons" to="CanvasLayer/LifeCounter" method="_on_patrons_life_count_changed"]
 [connection signal="serving_done" from="Patrons" to="." method="_on_patrons_serving_done"]
